@@ -28,15 +28,20 @@ def parseOutText(f):
         text_string = content[1].translate(str.maketrans('','',string.punctuation))
 
         ### project part 2: comment out the line below
-        words = text_string
+        # words = text_string
 
+        splits = text_string.split()
+        from nltk.stem.snowball import SnowballStemmer
+        # import nltk
+        # nltk.download('stopwords')
+        stemmer = SnowballStemmer("english", ignore_stopwords=True)
 
-
+        singles = [stemmer.stem(word) for word in splits]
         ### split the text string into individual words, stem each word,
         ### and append the stemmed word to words (make sure there's a single
         ### space between each stemmed word)
 
-
+        words = ' '.join(singles)
 
     return words
 
